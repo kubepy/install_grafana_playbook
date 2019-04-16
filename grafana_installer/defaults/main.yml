@@ -1,0 +1,15 @@
+---
+# defaults file for grafana_installer
+
+grafana_install: True
+grafana_var_path: /var/lib/grafana/
+grafana_filename: grafana-5.4.2-1.x86_64.rpm 
+grafana_pluginname: camptocamp-grafana-prometheus-alertmanager-datasource-0.0.7-0-gc4d8c51.zip
+grafana_username: admin
+grafana_password: admin
+grafana_datasource:
+  - name: prometheus
+    ds_type: prometheus
+    url: "https://{{ ansible_default_ipv4['address'] }}:9090"
+    username: admin
+    password: redhat

@@ -1,0 +1,6 @@
+[grafana:vars]
+#grafana_var_path=/u/grafana/
+grafana_datasource=[{"name": "prometheus","ds_type": "prometheus","url":"https://{{ ansible_default_ipv4['address'] }}:9090","username":"admin","password":"redhad"}]
+
+[grafana]
+localhost ansible_connection=local

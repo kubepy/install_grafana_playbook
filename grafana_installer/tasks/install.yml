@@ -1,0 +1,117 @@
+---
+# tasks file for grafana_installer
+- name: Copy grafana RPM packages to /tmp
+  copy:
+    src: "{{ grafana_filename }}" 
+    dest: /tmp/
+
+- name: install grafana RPM packages from a local file
+  yum:
+    name: "/tmp/{{ grafana_filename }}"
+    state: present
+
+- name: Ensure grafana path has been created
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+    owner: grafana
+    group: grafana
+  with_items:
+    - "{{ grafana_var_path }}"
+    - "{{ grafana_var_path }}/plugins"
+
+- name: Copy grafana.ini to /etc/grafana
+  template:
+    src: grafana.ini.j2 
+    dest: /etc/grafana/grafana.ini
+    mode: u=rw,g=r,o=
+    owner: root
+    group: grafana
+  notify: Restart grafana service
+
+- name: Unarchive {{ grafana_pluginname }} to remote {{ grafana_var_path }}/plugins
+  unarchive:
+    src: "{{ grafana_pluginname }}"
+    dest: "{{ grafana_var_path }}/plugins"
+    mode: u=rwx,g=rx,o=rx
+    owner: grafana
+    group: grafana
+  notify: Restart grafana service
+
+- name: Collect facts about system services
+  service_facts:
+
+- name: Ensure 3000 port open when firewalld is started
+  firewalld:
+    port: 3000/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+  when: ansible_facts.services['firewalld.service'] is defined
+  ignore_errors: yes
+
+- name: Ensure grafana service is started and enabled
+  service:
+    name: grafana-server
+    state: started
+    enabled: yes
+
+- name: Create [grafana_datasource] vars datasource
+  grafana_datasource:
+    name: "{{ item.name }}"
+    grafana_url: http://{{ ansible_default_ipv4['address'] }}:3000
+    grafana_user: "{{ grafana_username }}"
+    grafana_password: "{{ grafana_password }}"
+    ds_type: "{{ item.ds_type }}"
+    url: "{{ item.url }}"
+    basic_auth_user: "{{ item.username }}"
+    basic_auth_password: "{{ item.password }}"
+    tls_skip_verify: yes
+    state: present
+  with_items: "{{ grafana_datasource }}"
+
+- name: Copy grafana dashboard json file to /tmp
+  local_action:
+    module: copy
+    src: "{{ item }}"
+    dest: "/tmp/{{ item }}"
+  with_items:
+  - "node_exporter_dashboard.json"
+  - "wmi_exporter_dashboard.json"
+
+- name: Clean node exporter dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_password }}"
+    uid: nodeexporter
+    state: absent
+
+- name: Import node exporter dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_username }}"
+    overwrite: true
+    state: present
+    path: /tmp/node_exporter_dashboard.json
+  ignore_errors: true
+
+- name: Clean wmi exporter dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_password }}"
+    uid: wmiexporter
+    state: absent
+
+- name: Import wmi exporter dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_username }}"
+    overwrite: true
+    state: present
+    path: /tmp/wmi_exporter_dashboard.json
+  ignore_errors: true

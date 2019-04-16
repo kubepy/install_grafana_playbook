@@ -1,0 +1,12 @@
+---
+# handlers file for grafana_installer
+
+- name: Restart grafana service
+  service:
+    name: grafana-server
+    state: restarted
+
+- name: Reload grafana service
+  service:
+    name: grafana-server
+    state: reloaded

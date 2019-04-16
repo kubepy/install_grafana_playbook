@@ -1,0 +1,5 @@
+- hosts: grafana
+  gather_facts: True
+  roles:
+    - grafana_installer
+    - rename_ansible_log
