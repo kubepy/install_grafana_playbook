@@ -57,19 +57,88 @@
     state: started
     enabled: yes
 
-- name: Create [grafana_datasource] vars datasource
-  grafana_datasource:
-    name: "{{ item.name }}"
-    grafana_url: http://{{ ansible_default_ipv4['address'] }}:3000
-    grafana_user: "{{ grafana_username }}"
-    grafana_password: "{{ grafana_password }}"
-    ds_type: "{{ item.ds_type }}"
-    url: "{{ item.url }}"
-    basic_auth_user: "{{ item.username }}"
-    basic_auth_password: "{{ item.password }}"
-    tls_skip_verify: yes
-    state: present
-  with_items: "{{ grafana_datasource }}"
+- name: Set Prometheus Datasource facts
+  set_fact:
+    prometheus_datasource_payload_data: "{{ prometheus_datasource_payload | regex_replace('datasource_name', prometheus_datasource_name ) | regex_replace('datasource_url', prometheus_datasource_url ) | regex_replace('datasource_type', prometheus_datasource_type ) |regex_replace('datasource_username', prometheus_datasource_username ) | regex_replace('datasource_password', prometheus_datasource_password ) }}"
+
+- name: Set AlertManager Datasource facts
+  set_fact:
+    alertmanager_datasource_payload_data: "{{ alertmanager_datasource_payload | regex_replace('datasource_name', alertmanager_datasource_name ) | regex_replace('datasource_url', alertmanager_datasource_url ) | regex_replace('datasource_type', alertmanager_datasource_type ) |regex_replace('datasource_username', alertmanager_datasource_username ) | regex_replace('datasource_password', alertmanager_datasource_password ) }}"
+
+- name: Clean Prometheus datasource
+  uri:
+    url: http://{{ ansible_default_ipv4['address'] }}:3000/api/datasources/name/prometheus
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    force_basic_auth: true
+    method: DELETE
+    return_content: yes
+    status_code:
+    - 200
+    - 404
+    headers:
+      Content-Type: "Content-Type: application/json"
+  register: prometheus_datasource_id
+  ignore_errors: true
+
+- name: Clean alertmanager datasource
+  uri:
+    url: http://{{ ansible_default_ipv4['address'] }}:3000/api/datasources/name/alertmanager
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    force_basic_auth: true
+    method: DELETE
+    body_format: json
+    return_content: yes
+    status_code:
+    - 200
+    - 404
+    headers:
+      Content-Type: "Content-Type: application/json"
+  register: alertmanager_datasource_id
+  ignore_errors: true
+
+- debug: var=prometheus_datasource_id
+
+- debug: var=alertmanager_datasource_id
+
+- name: Add Prometheus datasource to grafana
+  uri:
+    url: http://{{ ansible_default_ipv4['address'] }}:3000/api/datasources
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    force_basic_auth: true
+    method: POST
+    body: '{{ prometheus_datasource_payload_data }}'
+    body_format: json
+    status_code:
+    - 200
+    - 409
+    headers:
+      Content-Type: "Content-Type: application/json"
+  register: prometheus_datasource_result
+  ignore_errors: true
+
+- name: Add AlertManager datasource to grafana
+  uri:
+    url: http://{{ ansible_default_ipv4['address'] }}:3000/api/datasources
+    user: "{{ grafana_username }}"
+    password: "{{ grafana_password }}"
+    force_basic_auth: true
+    method: POST
+    body: '{{ alertmanager_datasource_payload_data }}'
+    body_format: json
+    status_code:
+    - 200
+    - 409
+    headers:
+      Content-Type: "Content-Type: application/json"
+  register: alertmanager_datasource_result
+  ignore_errors: true
+
+- debug: var=prometheus_datasource_result
+
+- debug: var=alertmanager_datasource_result
 
 - name: Copy grafana dashboard json file to /tmp
   local_action:
@@ -115,3 +184,18 @@
     state: present
     path: /tmp/wmi_exporter_dashboard.json
   ignore_errors: true
+
+
+#- name: Create [grafana_datasource] vars datasource
+#  grafana_datasource:
+#    name: "{{ item.name }}"
+#    grafana_url: http://{{ ansible_default_ipv4['address'] }}:3000
+#    grafana_user: "{{ grafana_username }}"
+#    grafana_password: "{{ grafana_password }}"
+#    ds_type: "{{ item.ds_type }}"
+#    url: "{{ item.url }}"
+#    basic_auth_user: "{{ item.username }}"
+#    basic_auth_password: "{{ item.password }}"
+#    tls_skip_verify: yes
+#    state: present
+#  with_items: "{{ grafana_datasource }}"

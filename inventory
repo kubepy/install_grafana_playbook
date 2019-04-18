@@ -1,6 +1,17 @@
 [grafana:vars]
 #grafana_var_path=/u/grafana/
-grafana_datasource=[{"name": "prometheus","ds_type": "prometheus","url":"https://{{ ansible_default_ipv4['address'] }}:9090","username":"admin","password":"redhad"}]
+
+prometheus_datasource_url=https://{{ ansible_default_ipv4['address'] }}:9090
+prometheus_datasource_username=admin
+prometheus_datasource_password=redhat
+prometheus_datasource_type=prometheus
+prometheus_datasource_name=prometheus
+
+alertmanager_datasource_url=https://{{ ansible_default_ipv4['address'] }}:9093
+alertmanager_datasource_username=admin
+alertmanager_datasource_password=redhat
+alertmanager_datasource_type=camptocamp-prometheus-alertmanager-datasource
+alertmanager_datasource_name=alertmanager
 
 [grafana]
 localhost ansible_connection=local
