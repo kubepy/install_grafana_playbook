@@ -30,6 +30,11 @@
     group: grafana
   notify: Restart grafana service
 
+- name: install the latest version of unzip
+  yum:
+    name: unzip
+    state: present
+
 - name: Unarchive {{ grafana_pluginname }} to remote {{ grafana_var_path }}/plugins
   unarchive:
     src: "{{ grafana_pluginname }}"
@@ -156,6 +161,8 @@
     url_password: "{{ grafana_password }}"
     uid: nodeexporter
     state: absent
+  ignore_errors: true
+  delegate_to: localhost
 
 - name: Import node exporter dashboard
   grafana_dashboard:
@@ -166,6 +173,7 @@
     state: present
     path: /tmp/node_exporter_dashboard.json
   ignore_errors: true
+  delegate_to: localhost
 
 - name: Clean wmi exporter dashboard
   grafana_dashboard:
@@ -174,6 +182,8 @@
     url_password: "{{ grafana_password }}"
     uid: wmiexporter
     state: absent
+  ignore_errors: true
+  delegate_to: localhost
 
 - name: Import wmi exporter dashboard
   grafana_dashboard:
@@ -184,6 +194,7 @@
     state: present
     path: /tmp/wmi_exporter_dashboard.json
   ignore_errors: true
+  delegate_to: localhost
 
 
 #- name: Create [grafana_datasource] vars datasource
