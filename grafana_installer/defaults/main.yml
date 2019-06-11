@@ -33,10 +33,10 @@ alertmanager_datasource_payload:
   withCredentials: false
   jsonData:
     tlsSkipVerify: true
-    severity_critical: "1"
-    severity_high: "2"
-    severity_info: "4"
-    severity_warning: "3"
+    severity_critical: "4"
+    severity_high: "3"
+    severity_info: "2"
+    severity_warning: "1"
 
 prometheus_datasource_url: https://{{ ansible_default_ipv4['address'] }}:9090
 prometheus_datasource_username: admin
