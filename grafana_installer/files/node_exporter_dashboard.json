@@ -1,4 +1,43 @@
 {
+  "__inputs": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.4.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "yesoreyeram-boomtable-panel",
+      "name": "Boom Table",
+      "version": "1.0.0"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -22,7 +61,7 @@
   "gnetId": 9096,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1555320304755,
+  "iteration": 1560936250359,
   "links": [
     {
       "icon": "external link",
@@ -34,12 +73,1000 @@
   ],
   "panels": [
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
+      },
+      "id": 129,
+      "panels": [],
+      "title": "Quick Info",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "id": 122,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "100 - (avg by(env, job) (irate(node_cpu_seconds_total{mode=\"idle\",alias=~\"$host\"}[$__range])) * 100) ",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "CPU Usage",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 1
+      },
+      "id": 124,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "(((node_memory_MemTotal_bytes{alias=~\"$host\"} - node_memory_MemFree_bytes{alias=~\"$host\"} - node_memory_Cached_bytes{alias=~\"$host\"} - node_memory_Buffers_bytes{alias=~\"$host\"}) / (node_memory_MemTotal_bytes{alias=~\"$host\"})) * 100)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "Physical memory",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 1
+      },
+      "id": 125,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "(((node_memory_SwapTotal_bytes{alias=~\"$host\"} - node_memory_SwapFree_bytes{alias=~\"$host\"}) / node_memory_SwapTotal_bytes{alias=~\"$host\"}) * 100)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "Swap memory",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 1
+      },
+      "id": 126,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "((node_filesystem_size_bytes{alias=~\"$host\",fstype=\"rootfs\"} - node_filesystem_avail_bytes{alias=~\"$host\",fstype=\"rootfs\"}) / node_filesystem_size_bytes{alias=~\"$host\",fstype=\"rootfs\"}) * 100",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "Filesystem(mount=\"/\")",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 127,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "((node_filesystem_size_bytes{alias=~\"$host\",mountpoint=\"/u\"} - node_filesystem_avail_bytes{alias=~\"$host\",mountpoint=\"/u\"}) / node_filesystem_size_bytes{alias=~\"$host\",mountpoint=\"/u\"}) * 100",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "Filesystem(mount=\"/u\")",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 1
+      },
+      "id": 135,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "(node_filefd_allocated{alias=~\"$host\"} / node_filefd_maximum{alias=~\"$host\"}) * 100",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "File Descriptors Used",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "decimals": 2,
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 5
+      },
+      "id": 131,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "node_load1{alias=~\"$host\"}",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "CPU Load (1min)",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "decimals": 2,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 5
+      },
+      "id": 132,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "node_load5{alias=~\"$host\"}",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "CPU Load (5min)",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "decimals": 2,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 5
+      },
+      "id": 130,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "node_load15{alias=~\"$host\"}",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "CPU Load (15min)",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "Bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 5
+      },
+      "id": 133,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(rate(node_network_receive_bytes_total{alias=~\"$host\",device!=\"lo\"}[5m]))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "Network IN",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "Bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 5
+      },
+      "id": 134,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(rate(node_network_transmit_bytes_total{alias=~\"$host\",device!=\"lo\"}[5m]))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "50,80",
+      "title": "Network OUT",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "activePatternIndex": 0,
+      "datasource": "$datasource",
+      "debug_mode": false,
+      "defaultPattern": {
+        "bgColors": "green|orange|red",
+        "bgColors_overrides": "0->green|2->red|1->yellow",
+        "clickable_cells_link": "",
+        "col_name": "Value",
+        "decimals": 2,
+        "delimiter": ".",
+        "enable_bgColor": false,
+        "enable_bgColor_overrides": false,
+        "enable_clickable_cells": false,
+        "enable_textColor": false,
+        "enable_textColor_overrides": false,
+        "enable_time_based_thresholds": false,
+        "enable_transform": false,
+        "enable_transform_overrides": false,
+        "filter": {
+          "value_above": "",
+          "value_below": ""
+        },
+        "format": "none",
+        "name": "Default Pattern",
+        "null_color": "darkred",
+        "null_textcolor": "black",
+        "null_value": "No data",
+        "pattern": "*",
+        "row_col_wrapper": "_",
+        "row_name": "_series_",
+        "textColors": "red|orange|green",
+        "textColors_overrides": "0->red|2->green|1->yellow",
+        "thresholds": "70,90",
+        "time_based_thresholds": [],
+        "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+        "transform_values": "_value_|_value_|_value_",
+        "transform_values_overrides": "0->down|1->up",
+        "valueName": "current"
+      },
+      "default_title_for_rows": "Metric",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 5
+      },
+      "hideTimeOverride": false,
+      "hide_first_column": false,
+      "hide_headers": true,
+      "id": 137,
+      "links": [],
+      "patterns": [],
+      "repeat": null,
+      "repeatDirection": "h",
+      "row_col_wrapper": "_",
+      "targets": [
+        {
+          "expr": "node_uname_info{alias=~\"$host\"}",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "legendFormat": "{{release}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Kernel Version",
+      "transparent": false,
+      "type": "yesoreyeram-boomtable-panel"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
       },
       "id": 62,
       "panels": [
@@ -51,7 +1078,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 1
+            "y": 10
           },
           "id": 81,
           "links": [],
@@ -118,7 +1145,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 7
+            "y": 16
           },
           "id": 79,
           "legend": {
@@ -257,7 +1284,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 12
+            "y": 21
           },
           "id": 119,
           "legend": {
@@ -367,895 +1394,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 1
-      },
-      "id": 88,
-      "panels": [
-        {
-          "columns": [],
-          "datasource": "$datasource",
-          "description": "Uname",
-          "fontSize": "100%",
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 2
-          },
-          "id": 55,
-          "links": [],
-          "pageSize": 40,
-          "scroll": true,
-          "showHeader": true,
-          "sort": {
-            "col": 0,
-            "desc": true
-          },
-          "styles": [
-            {
-              "alias": "Time",
-              "dateFormat": "YYYY-MM-DD HH:mm:ss",
-              "pattern": "Time",
-              "type": "date"
-            },
-            {
-              "alias": "",
-              "colorMode": null,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "decimals": 2,
-              "pattern": "/.*/",
-              "thresholds": [],
-              "type": "number",
-              "unit": "short"
-            }
-          ],
-          "targets": [
-            {
-              "expr": "count(node_uname_info{alias=~\"$host\"}) by (alias,env,instance,machine,release)",
-              "format": "table",
-              "instant": true,
-              "intervalFactor": 1,
-              "refId": "A"
-            }
-          ],
-          "title": "Kernel",
-          "transform": "table",
-          "type": "table"
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "- Processors can be orders of magnitudes faster than the hardware they talk to; it is not ideal for the kernel to issue a request and wait for a response from slower hardware. Instead, the kernel must be free to go and handle other work, dealing with the hardware only after that hardware has actually completed its work. \n\n- How can the processor work with hardware without impacting the machine's overall performance? As one solution, polling incurs overhead, because it must occur repeatedly regardless of whether the hardware is active or ready. A better solution is to provide a mechanism for the hardware to signal to the kernel when attention is needed. This mechanism is called an interrupt. This chapter dicusses interrupts and how the kernel responds to them, with special functions called interrupt handlers.\n\n- Interrupts\n  - Interrupts enable hardware to signal to the processor.\nFor example, as you type, the keyboard controller (the hardware device that manages the keyboard) issues an electrical signal to the processor to alert the operating system to newly available key presses. These electrical signals are interrupts. The processor receives the interrupt and signals the operating system to enable the operating system to respond to the new data.\n  - Hardware devices generate interrupts asynchronously (with respect to the processor clock). Consequently, the kernel can be interrupted at any time to process interrupts.",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {},
-          "gridPos": {
-            "h": 5,
-            "w": 24,
-            "x": 0,
-            "y": 8
-          },
-          "id": 28,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [
-            {
-              "title": "Interrupts",
-              "type": "absolute",
-              "url": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/s2-proc-stat"
-            }
-          ],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "Interrupts",
-              "color": "#D683CE"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "calculatedInterval": "2m",
-              "datasourceErrors": {},
-              "errors": {},
-              "expr": "rate(node_intr_total{alias=~\"$host\"}[$__range])",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Interrupts: {{alias}}",
-              "metric": "",
-              "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_procs_running%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%2243200s%22%2C%22end_input%22%3A%222015-9-18%2013%3A46%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
-              "refId": "A",
-              "step": 120,
-              "target": ""
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Interrupts",
-          "tooltip": {
-            "msResolution": true,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "- In computing, a context switch is the process of storing the state of a process or of a thread, so that it can be restored and execution resumed from the same point later. This allows multiple processes to share a single CPU, and is an essential feature of a multitasking operating system.\n\n - The precise meaning of the phrase “context switch” varies significantly in usage. In a multitasking context, it refers to the process of storing the system state for one task, so that task can be paused and another task resumed. A context switch can also occur as the result of an interrupt, such as when a task needs to access disk storage, freeing up CPU time for other tasks. Some operating systems also require a context switch to move between user mode and kernel mode tasks. The process of context switching can have a negative impact on system performance, although the size of this effect depends on the nature of the switch being performed.\n\n - Context switches are usually computationally intensive, and much of the design of operating systems is to optimize the use of context switches. Switching from one process to another requires a certain amount of time for doing the administration – saving and loading registers and memory maps, updating various tables and lists, etc. What is actually involved in a context switch varies between these senses and between processors and operating systems. For example, in the Linux kernel, context switching involves switching registers, stack pointer, and program counter, but is independent of address space switching, though in a process switch an address space switch also happens. Further still, analogous context switching happens between user threads, notably green threads, and is often very light-weight, saving and restoring minimal context. In extreme cases, such as switching between goroutines in Go, a context switch is equivalent to a coroutine yield, which is only marginally more expensive than a subroutine call.",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {},
-          "gridPos": {
-            "h": 5,
-            "w": 24,
-            "x": 0,
-            "y": 13
-          },
-          "id": 82,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [
-            {
-              "title": "Context Switches",
-              "type": "absolute",
-              "url": "http://www.linfo.org/context_switch.html"
-            },
-            {
-              "title": "Context Switches",
-              "type": "absolute",
-              "url": "https://www.slashroot.in/linux-cpu-performance-monitoring-tutorial"
-            }
-          ],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "irate(node_context_switches_total{alias=~\"$host\"}[$__range])",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Context Switches: {{alias}}",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Context Switches",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "ops",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "- Fork\n  - When you come to metaphorical \"fork in the road\" you generally have two options to take, and your decision effects your future. Computer programs reach this fork in the road when they hit the fork() system call.\n\n  - At this point, the operating system will create a new process that is exactly the same as the parent process. This means all the state that was talked about previously is copied, including open files, register state and all memory allocations, which includes the program code.\n\n  - The return value from the system call is the only way the process can determine if it was the existing process or a new one. The return value to the parent process will be the Process ID (PID) of the child, whilst the child will get a return value of 0.\n\n   - At this point, we say the process has forked and we have the parent-child relationship as described above.\n\n- Exec\n  - Forking provides a way for an existing process to start a new one, but what about the case where the new process is not part of the same program as parent process? This is the case in the shell; when a user starts a command it needs to run in a new process, but it is unrelated to the shell.\n\n  - This is where the exec system call comes into play. exec will replace the contents of the currently running process with the information from a program binary.\n\n  - Thus the process the shell follows when launching a new program is to firstly fork, creating a new process, and then exec (i.e. load into memory and execute) the program binary it is supposed to run.",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {},
-          "gridPos": {
-            "h": 4,
-            "w": 24,
-            "x": 0,
-            "y": 18
-          },
-          "id": 24,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [
-            {
-              "dashboard": "Forks",
-              "title": "Forks & Exec",
-              "type": "absolute",
-              "url": "https://www.bottomupcs.com/fork_and_exec.xhtml"
-            }
-          ],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "calculatedInterval": "2m",
-              "datasourceErrors": {},
-              "errors": {},
-              "expr": "rate(node_forks_total{alias=~\"$host\"}[$__range]) ",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Forks: {{alias}}",
-              "metric": "",
-              "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_procs_running%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%2243200s%22%2C%22end_input%22%3A%222015-9-18%2013%3A46%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
-              "refId": "A",
-              "step": 120,
-              "target": ""
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Forks",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
-      "title": "Kernel",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 2
-      },
-      "id": 107,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "In computing, entropy is the randomness collected by an operating system or application for use in cryptography or other uses that require random data. This randomness is often collected from hardware sources (variance in fan noise or HDD), either pre-existing ones such as mouse movements or specially provided randomness generators. A lack of entropy can have a negative impact on performance and security.\n\nBits of available entropy.\n - Critical:\n    - If < 500 bits there is a problem.\n\n- Sometimes servers just have the weirdest SSL problems ever. In some of these situations, the entropy has been drained. Entropy is the measure of the random numbers available from /dev/urandom, and if you run out, you can’t make SSL connections. \n- To check the status of your server’s entropy, just run the following: $ cat /proc/sys/kernel/random/entropy_avail\n- The consensus is that numbers below 1000 will lead to processes blocking waiting for more entropy.",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {},
-          "gridPos": {
-            "h": 4,
-            "w": 24,
-            "x": 0,
-            "y": 3
-          },
-          "id": 83,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [
-            {
-              "title": "Entropy",
-              "type": "absolute",
-              "url": "https://developers.redhat.com/blog/2017/10/05/entropy-rhel-based-cloud-instances/"
-            }
-          ],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "node_entropy_available_bits{alias=~\"$host\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Entropy: {{alias}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": false,
-              "line": true,
-              "op": "lt",
-              "value": 500,
-              "yaxis": "left"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Entropy (bits)",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "decbits",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
-      "title": "Entropy",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 3
-      },
-      "id": 105,
-      "panels": [
-        {
-          "aliasColors": {
-            "Load 1m": "#1F78C1",
-            "Load 5m": "#1F78C1"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "- Load average – is the average system load calculated over a given period of time of 1, 5 and 15 minutes.\n   - In Linux, the load-average is technically believed to be a running average of processes in it’s (kernel) execution queue tagged as running or uninterruptible.\n  - Linux load averages track not just runnable tasks, but also tasks in the uninterruptible sleep state.\n\nLoad for 1m > 2 means a possible problem.\n>Actual Treshold is 6.",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {},
-          "gridPos": {
-            "h": 4,
-            "w": 24,
-            "x": 0,
-            "y": 4
-          },
-          "id": 78,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [
-            {
-              "title": "Load",
-              "type": "absolute",
-              "url": "http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages"
-            },
-            {
-              "title": "Load",
-              "type": "absolute",
-              "url": "http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html"
-            }
-          ],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "node_load1{alias=~\"$host\"} ",
-              "format": "time_series",
-              "hide": false,
-              "instant": false,
-              "intervalFactor": 1,
-              "legendFormat": "Load1: {{alias}}",
-              "refId": "C"
-            }
-          ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": false,
-              "line": true,
-              "op": "gt",
-              "value": 6,
-              "yaxis": "left"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Load: 1m",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "none",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "none",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "Load 1m": "#1F78C1",
-            "Load 5m": "#1F78C1"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "- Load average – is the average system load calculated over a given period of time of 1, 5 and 15 minutes.\n   - In Linux, the load-average is technically believed to be a running average of processes in it’s (kernel) execution queue tagged as running or uninterruptible.\n  - Linux load averages track not just runnable tasks, but also tasks in the uninterruptible sleep state.\n\nLoad for 1m > 2 means a possible problem.\n>Actual Treshold is 6.",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {},
-          "gridPos": {
-            "h": 4,
-            "w": 24,
-            "x": 0,
-            "y": 8
-          },
-          "id": 77,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "calculatedInterval": "10s",
-              "datasourceErrors": {},
-              "errors": {},
-              "expr": "node_load5{alias=~\"$host\"}",
-              "format": "time_series",
-              "hide": false,
-              "instant": false,
-              "intervalFactor": 1,
-              "legendFormat": "Load5: {{alias}}",
-              "metric": "",
-              "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_load1%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%223601s%22%2C%22end_input%22%3A%222015-10-22%2015%3A27%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Afalse%2C%22tab%22%3A0%7D%5D",
-              "refId": "B",
-              "step": 60,
-              "target": ""
-            }
-          ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": false,
-              "line": true,
-              "op": "gt",
-              "value": 6,
-              "yaxis": "left"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Load: 5m",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "none",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "none",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "Load 1m": "#1F78C1",
-            "Load 5m": "#1F78C1"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "- Load average – is the average system load calculated over a given period of time of 1, 5 and 15 minutes.\n   - In Linux, the load-average is technically believed to be a running average of processes in it’s (kernel) execution queue tagged as running or uninterruptible.\n  - Linux load averages track not just runnable tasks, but also tasks in the uninterruptible sleep state.\n\nLoad for 1m > 2 means a possible problem.\n>Actual Treshold is 6.",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {},
-          "gridPos": {
-            "h": 4,
-            "w": 24,
-            "x": 0,
-            "y": 12
-          },
-          "id": 76,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "node_load15{alias=~\"$host\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Load15: {{alias}}",
-              "refId": "C"
-            }
-          ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": false,
-              "line": true,
-              "op": "gt",
-              "value": 6,
-              "yaxis": "left"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Load: 15m",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "none",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "none",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
-      "title": "Load",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 4
+        "y": 10
       },
       "id": 92,
       "panels": [
@@ -1267,12 +1406,12 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 5
+            "y": 3
           },
           "id": 58,
           "links": [],
           "pageSize": 40,
-          "scroll": false,
+          "scroll": true,
           "showHeader": true,
           "sort": {
             "col": 1,
@@ -1350,7 +1489,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 11
+            "y": 9
           },
           "height": "260px",
           "id": 2,
@@ -1460,7 +1599,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 11
       },
       "id": 94,
       "panels": [
@@ -1483,7 +1622,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 6
+            "y": 14
           },
           "height": "",
           "id": 6,
@@ -1597,7 +1736,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 10
+            "y": 18
           },
           "id": 23,
           "legend": {
@@ -1697,7 +1836,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 12
       },
       "id": 90,
       "panels": [
@@ -1717,7 +1856,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 7
+            "y": 13
           },
           "id": 110,
           "legend": {
@@ -1822,7 +1961,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 12
+            "y": 18
           },
           "id": 46,
           "legend": {
@@ -1929,7 +2068,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 16
+            "y": 22
           },
           "height": "",
           "id": 53,
@@ -2058,7 +2197,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 21
+            "y": 27
           },
           "height": "",
           "id": 102,
@@ -2188,7 +2327,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 26
+            "y": 32
           },
           "height": "",
           "id": 111,
@@ -2297,7 +2436,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 13
       },
       "id": 60,
       "panels": [
@@ -2317,7 +2456,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 8
+            "y": 41
           },
           "id": 71,
           "legend": {
@@ -2364,6 +2503,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Filesystem Device Error",
           "tooltip": {
@@ -2421,7 +2561,7 @@
             "h": 12,
             "w": 24,
             "x": 0,
-            "y": 17
+            "y": 50
           },
           "id": 69,
           "legend": {
@@ -2470,6 +2610,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Filesystem Space Used",
           "tooltip": {
@@ -2526,7 +2667,7 @@
             "h": 11,
             "w": 24,
             "x": 0,
-            "y": 29
+            "y": 62
           },
           "id": 70,
           "legend": {
@@ -2575,6 +2716,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Filesystem Inodes Used",
           "tooltip": {
@@ -2625,7 +2767,895 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 14
+      },
+      "id": 105,
+      "panels": [
+        {
+          "aliasColors": {
+            "Load 1m": "#1F78C1",
+            "Load 5m": "#1F78C1"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "decimals": 2,
+          "description": "- Load average – is the average system load calculated over a given period of time of 1, 5 and 15 minutes.\n   - In Linux, the load-average is technically believed to be a running average of processes in it’s (kernel) execution queue tagged as running or uninterruptible.\n  - Linux load averages track not just runnable tasks, but also tasks in the uninterruptible sleep state.\n\nLoad for 1m > 2 means a possible problem.\n>Actual Treshold is 6.",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 15
+          },
+          "id": 78,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "Load",
+              "type": "absolute",
+              "url": "http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages"
+            },
+            {
+              "title": "Load",
+              "type": "absolute",
+              "url": "http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html"
+            }
+          ],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_load1{alias=~\"$host\"} ",
+              "format": "time_series",
+              "hide": false,
+              "instant": false,
+              "intervalFactor": 1,
+              "legendFormat": "Load1: {{alias}}",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": false,
+              "line": true,
+              "op": "gt",
+              "value": 6,
+              "yaxis": "left"
+            }
+          ],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Load: 1m",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "none",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "Load 1m": "#1F78C1",
+            "Load 5m": "#1F78C1"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "decimals": 2,
+          "description": "- Load average – is the average system load calculated over a given period of time of 1, 5 and 15 minutes.\n   - In Linux, the load-average is technically believed to be a running average of processes in it’s (kernel) execution queue tagged as running or uninterruptible.\n  - Linux load averages track not just runnable tasks, but also tasks in the uninterruptible sleep state.\n\nLoad for 1m > 2 means a possible problem.\n>Actual Treshold is 6.",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 19
+          },
+          "id": 77,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "calculatedInterval": "10s",
+              "datasourceErrors": {},
+              "errors": {},
+              "expr": "node_load5{alias=~\"$host\"}",
+              "format": "time_series",
+              "hide": false,
+              "instant": false,
+              "intervalFactor": 1,
+              "legendFormat": "Load5: {{alias}}",
+              "metric": "",
+              "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_load1%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%223601s%22%2C%22end_input%22%3A%222015-10-22%2015%3A27%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Afalse%2C%22tab%22%3A0%7D%5D",
+              "refId": "B",
+              "step": 60,
+              "target": ""
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": false,
+              "line": true,
+              "op": "gt",
+              "value": 6,
+              "yaxis": "left"
+            }
+          ],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Load: 5m",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "none",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "Load 1m": "#1F78C1",
+            "Load 5m": "#1F78C1"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "decimals": 2,
+          "description": "- Load average – is the average system load calculated over a given period of time of 1, 5 and 15 minutes.\n   - In Linux, the load-average is technically believed to be a running average of processes in it’s (kernel) execution queue tagged as running or uninterruptible.\n  - Linux load averages track not just runnable tasks, but also tasks in the uninterruptible sleep state.\n\nLoad for 1m > 2 means a possible problem.\n>Actual Treshold is 6.",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 23
+          },
+          "id": 76,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_load15{alias=~\"$host\"}",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Load15: {{alias}}",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": false,
+              "line": true,
+              "op": "gt",
+              "value": 6,
+              "yaxis": "left"
+            }
+          ],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Load: 15m",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "none",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Load",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 88,
+      "panels": [
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "description": "Uname",
+          "fontSize": "100%",
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 16
+          },
+          "id": 55,
+          "links": [],
+          "pageSize": 40,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "expr": "count(node_uname_info{alias=~\"$host\"}) by (alias,env,instance,machine,release)",
+              "format": "table",
+              "instant": true,
+              "intervalFactor": 1,
+              "refId": "A"
+            }
+          ],
+          "title": "Kernel",
+          "transform": "table",
+          "type": "table"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "decimals": 2,
+          "description": "- Processors can be orders of magnitudes faster than the hardware they talk to; it is not ideal for the kernel to issue a request and wait for a response from slower hardware. Instead, the kernel must be free to go and handle other work, dealing with the hardware only after that hardware has actually completed its work. \n\n- How can the processor work with hardware without impacting the machine's overall performance? As one solution, polling incurs overhead, because it must occur repeatedly regardless of whether the hardware is active or ready. A better solution is to provide a mechanism for the hardware to signal to the kernel when attention is needed. This mechanism is called an interrupt. This chapter dicusses interrupts and how the kernel responds to them, with special functions called interrupt handlers.\n\n- Interrupts\n  - Interrupts enable hardware to signal to the processor.\nFor example, as you type, the keyboard controller (the hardware device that manages the keyboard) issues an electrical signal to the processor to alert the operating system to newly available key presses. These electrical signals are interrupts. The processor receives the interrupt and signals the operating system to enable the operating system to respond to the new data.\n  - Hardware devices generate interrupts asynchronously (with respect to the processor clock). Consequently, the kernel can be interrupted at any time to process interrupts.",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "gridPos": {
+            "h": 5,
+            "w": 24,
+            "x": 0,
+            "y": 22
+          },
+          "id": 28,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "Interrupts",
+              "type": "absolute",
+              "url": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/s2-proc-stat"
+            }
+          ],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Interrupts",
+              "color": "#D683CE"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "calculatedInterval": "2m",
+              "datasourceErrors": {},
+              "errors": {},
+              "expr": "rate(node_intr_total{alias=~\"$host\"}[$__range])",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "Interrupts: {{alias}}",
+              "metric": "",
+              "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_procs_running%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%2243200s%22%2C%22end_input%22%3A%222015-9-18%2013%3A46%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
+              "refId": "A",
+              "step": 120,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Interrupts",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "decimals": 2,
+          "description": "- In computing, a context switch is the process of storing the state of a process or of a thread, so that it can be restored and execution resumed from the same point later. This allows multiple processes to share a single CPU, and is an essential feature of a multitasking operating system.\n\n - The precise meaning of the phrase “context switch” varies significantly in usage. In a multitasking context, it refers to the process of storing the system state for one task, so that task can be paused and another task resumed. A context switch can also occur as the result of an interrupt, such as when a task needs to access disk storage, freeing up CPU time for other tasks. Some operating systems also require a context switch to move between user mode and kernel mode tasks. The process of context switching can have a negative impact on system performance, although the size of this effect depends on the nature of the switch being performed.\n\n - Context switches are usually computationally intensive, and much of the design of operating systems is to optimize the use of context switches. Switching from one process to another requires a certain amount of time for doing the administration – saving and loading registers and memory maps, updating various tables and lists, etc. What is actually involved in a context switch varies between these senses and between processors and operating systems. For example, in the Linux kernel, context switching involves switching registers, stack pointer, and program counter, but is independent of address space switching, though in a process switch an address space switch also happens. Further still, analogous context switching happens between user threads, notably green threads, and is often very light-weight, saving and restoring minimal context. In extreme cases, such as switching between goroutines in Go, a context switch is equivalent to a coroutine yield, which is only marginally more expensive than a subroutine call.",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "gridPos": {
+            "h": 5,
+            "w": 24,
+            "x": 0,
+            "y": 27
+          },
+          "id": 82,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "Context Switches",
+              "type": "absolute",
+              "url": "http://www.linfo.org/context_switch.html"
+            },
+            {
+              "title": "Context Switches",
+              "type": "absolute",
+              "url": "https://www.slashroot.in/linux-cpu-performance-monitoring-tutorial"
+            }
+          ],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(node_context_switches_total{alias=~\"$host\"}[$__range])",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "Context Switches: {{alias}}",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Context Switches",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "ops",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "decimals": 2,
+          "description": "- Fork\n  - When you come to metaphorical \"fork in the road\" you generally have two options to take, and your decision effects your future. Computer programs reach this fork in the road when they hit the fork() system call.\n\n  - At this point, the operating system will create a new process that is exactly the same as the parent process. This means all the state that was talked about previously is copied, including open files, register state and all memory allocations, which includes the program code.\n\n  - The return value from the system call is the only way the process can determine if it was the existing process or a new one. The return value to the parent process will be the Process ID (PID) of the child, whilst the child will get a return value of 0.\n\n   - At this point, we say the process has forked and we have the parent-child relationship as described above.\n\n- Exec\n  - Forking provides a way for an existing process to start a new one, but what about the case where the new process is not part of the same program as parent process? This is the case in the shell; when a user starts a command it needs to run in a new process, but it is unrelated to the shell.\n\n  - This is where the exec system call comes into play. exec will replace the contents of the currently running process with the information from a program binary.\n\n  - Thus the process the shell follows when launching a new program is to firstly fork, creating a new process, and then exec (i.e. load into memory and execute) the program binary it is supposed to run.",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 32
+          },
+          "id": 24,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "dashboard": "Forks",
+              "title": "Forks & Exec",
+              "type": "absolute",
+              "url": "https://www.bottomupcs.com/fork_and_exec.xhtml"
+            }
+          ],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "calculatedInterval": "2m",
+              "datasourceErrors": {},
+              "errors": {},
+              "expr": "rate(node_forks_total{alias=~\"$host\"}[$__range]) ",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Forks: {{alias}}",
+              "metric": "",
+              "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_procs_running%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%2243200s%22%2C%22end_input%22%3A%222015-9-18%2013%3A46%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
+              "refId": "A",
+              "step": 120,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Forks",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Kernel",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 107,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "decimals": 2,
+          "description": "In computing, entropy is the randomness collected by an operating system or application for use in cryptography or other uses that require random data. This randomness is often collected from hardware sources (variance in fan noise or HDD), either pre-existing ones such as mouse movements or specially provided randomness generators. A lack of entropy can have a negative impact on performance and security.\n\nBits of available entropy.\n - Critical:\n    - If < 500 bits there is a problem.\n\n- Sometimes servers just have the weirdest SSL problems ever. In some of these situations, the entropy has been drained. Entropy is the measure of the random numbers available from /dev/urandom, and if you run out, you can’t make SSL connections. \n- To check the status of your server’s entropy, just run the following: $ cat /proc/sys/kernel/random/entropy_avail\n- The consensus is that numbers below 1000 will lead to processes blocking waiting for more entropy.",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 14
+          },
+          "id": 83,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "title": "Entropy",
+              "type": "absolute",
+              "url": "https://developers.redhat.com/blog/2017/10/05/entropy-rhel-based-cloud-instances/"
+            }
+          ],
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "node_entropy_available_bits{alias=~\"$host\"}",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Entropy: {{alias}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "critical",
+              "fill": false,
+              "line": true,
+              "op": "lt",
+              "value": 500,
+              "yaxis": "left"
+            }
+          ],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Entropy (bits)",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "decbits",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Entropy",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
       },
       "id": 109,
       "panels": [
@@ -2645,7 +3675,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 9
+            "y": 16
           },
           "id": 41,
           "legend": {
@@ -2705,6 +3735,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "File Descriptors Used",
           "tooltip": {
@@ -2761,7 +3792,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 13
+            "y": 20
           },
           "id": 80,
           "legend": {
@@ -2822,6 +3853,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Process Open Files Used",
           "tooltip": {
@@ -2872,7 +3904,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 18
       },
       "id": 86,
       "panels": [
@@ -2892,7 +3924,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 10
+            "y": 17
           },
           "id": 112,
           "legend": {
@@ -2948,6 +3980,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Network Interface State",
           "tooltip": {
@@ -3005,7 +4038,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 15
+            "y": 22
           },
           "id": 43,
           "legend": {
@@ -3075,6 +4108,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Network IN/OUT Drops",
           "tooltip": {
@@ -3131,7 +4165,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 15
+            "y": 22
           },
           "id": 44,
           "legend": {
@@ -3201,6 +4235,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Network IN/OUT Errors",
           "tooltip": {
@@ -3257,7 +4292,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 23
+            "y": 30
           },
           "id": 21,
           "legend": {
@@ -3363,6 +4398,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Network IN/OUT Traffic",
           "tooltip": {
@@ -3420,7 +4456,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 31
+            "y": 38
           },
           "id": 42,
           "legend": {
@@ -3508,6 +4544,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Network IN/OUT Packets",
           "tooltip": {
@@ -3564,7 +4601,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 38
+            "y": 45
           },
           "id": 103,
           "legend": {
@@ -3634,6 +4671,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Network MTU (bytes)",
           "tooltip": {
@@ -3691,7 +4729,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 43
+            "y": 50
           },
           "id": 120,
           "legend": {
@@ -3747,6 +4785,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Network Interface Speed",
           "tooltip": {
@@ -3798,7 +4837,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 19
       },
       "id": 96,
       "panels": [
@@ -3818,7 +4857,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 11
+            "y": 18
           },
           "id": 84,
           "legend": {
@@ -3877,6 +4916,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "NTP Sanity",
           "tooltip": {
@@ -3933,7 +4973,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 15
+            "y": 22
           },
           "id": 27,
           "legend": {
@@ -3994,6 +5034,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "NTP Leap Seconds",
           "tooltip": {
@@ -4050,7 +5091,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 19
+            "y": 26
           },
           "id": 97,
           "legend": {
@@ -4105,6 +5146,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "NTP Stratum",
           "tooltip": {
@@ -4155,7 +5197,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 20
       },
       "id": 114,
       "panels": [
@@ -4172,7 +5214,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 12
+            "y": 57
           },
           "id": 116,
           "legend": {
@@ -4218,6 +5260,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Processes: Threads Used",
           "tooltip": {
@@ -4269,7 +5312,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 16
+            "y": 61
           },
           "id": 117,
           "legend": {
@@ -4314,6 +5357,7 @@
           ],
           "thresholds": [],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Processes: State",
           "tooltip": {
@@ -4367,7 +5411,7 @@
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 22
+            "y": 67
           },
           "id": 118,
           "legend": {
@@ -4424,6 +5468,7 @@
           ],
           "thresholds": [],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Nr. Processes: Running & Blocked",
           "tooltip": {
@@ -4473,16 +5518,16 @@
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
-    "grafana",
     "prometheus",
-    "noe_exporter 0.17"
+    "noe_exporter 0.17",
+    "linux"
   ],
   "templating": {
     "list": [
       {
         "current": {
-          "text": "Prometheus",
-          "value": "Prometheus"
+          "text": "prometheus",
+          "value": "prometheus"
         },
         "hide": 0,
         "label": "Datasource",
@@ -4496,38 +5541,54 @@
       },
       {
         "allValue": "",
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": "$datasource",
-        "definition": "label_values(alias)",
+        "definition": "label_values(node_exporter_build_info,alias)",
         "hide": 0,
         "includeAll": true,
-        "label": "Host",
+        "label": "hostname",
         "multi": true,
         "name": "host",
         "options": [],
-        "query": "label_values(alias)",
+        "query": "label_values(node_exporter_build_info,alias)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "label_values({clustername=~\"$tag\"},alias)",
-        "tags": [],
-        "tagsQuery": "label_values(clustername)",
+        "tagValuesQuery": "label_values({node_exporter_build_info,clustername=~\"$tag\"},alias)",
+        "tags": [
+          "MDC-T0-C1",
+          "T3-VSH-STD-PDC",
+          "PDC601-T2-C1",
+          "CNVSH52-T3-T4-Dedicated",
+          "MDC-T2-C1",
+          "MDC-PRD-vSAN",
+          "Infra-VC-Across-2DC",
+          "CNHO-01PDC-NETL3-T1-C1",
+          "CNHO-02MDC-NETL3-T1-C1",
+          "PDC-PRD-vSAN",
+          "CNVSH54-HRMS",
+          "stage-k8s-cluster02",
+          "k8s",
+          "PDC601-Infra",
+          "production",
+          "bigdata",
+          "T3-HO-APPS01",
+          "T3-OPS-APPS01",
+          "prod-k8s-cluster02",
+          "T2-OPS-DB-OSER600791",
+          "T2-OPS-DB-OSER600795"
+        ],
+        "tagsQuery": "label_values(node_exporter_build_info,clustername)",
         "type": "query",
         "useTags": true
       },
       {
         "allValue": null,
-        "current": {
-          "text": "0.17.0",
-          "value": "0.17.0"
-        },
+        "current": {},
         "datasource": "$datasource",
         "definition": "",
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "label": "Exporter Version",
         "multi": false,
@@ -4583,7 +5644,7 @@
     "type": "timepicker"
   },
   "timezone": "browser",
-  "title": "Node Exporter 0.17.0 (Host Metrics)",
+  "title": "Linux (node_exporter)",
   "uid": "nodeexporter",
-  "version": 3
+  "version": 30
 }

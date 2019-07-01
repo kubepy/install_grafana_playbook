@@ -1,0 +1,2261 @@
+{
+  "__inputs": [],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "camptocamp-prometheus-alertmanager-datasource",
+      "name": "Prometheus AlertManager",
+      "version": "0.0.7"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.4.2"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": "5.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1560936132197,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 13,
+      "panels": [],
+      "title": "Overview",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "id": 34,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&panelId=28&fullscreen&from=1556251197392&to=1556272797392&var-datasource=alertmanager"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=ExporterDown",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "ExporterDown",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 1
+      },
+      "id": 46,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=9&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=CpuLoad",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Linux CpuLoad",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 1
+      },
+      "id": 44,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=14&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Memory",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Linux Memory(>85%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 49,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=17&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Swap Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Linux Swap Used(>75%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 5
+      },
+      "id": 43,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=2&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Filesystem Space Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Linux Filesystem Space Used(>80%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 5
+      },
+      "id": 45,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=20&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Filesystem Inodes Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Linux Filesystem Inodes Used(>85%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 5
+      },
+      "id": 47,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=23&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Process Open Files Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Linux Process Open Files Used(>85%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 5
+      },
+      "id": 56,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=26&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=UnusualNetworkThroughputIn",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Linux UnusualNetworkThroughputIn(>100 MB/s)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 9
+      },
+      "id": 48,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "/d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=27&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=UnusualNetworkThroughputOut",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Linux UnusualNetworkThroughputOut(>100 MB/s)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 9
+      },
+      "id": 51,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=6&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Windows Nodes Disk Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Windows Nodes Disk Used(>80%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 9
+      },
+      "id": 52,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=29&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Windows Nodes CPU Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Windows Nodes CPU Used(>90%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 9
+      },
+      "id": 53,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=31&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Windows Nodes Memory Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Windows Nodes Memory Used(>85%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 13
+      },
+      "id": 54,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-datasource=alertmanager&panelId=30&fullscreen"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Windows Nodes Virtual Memory Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Windows Nodes Virtual Memory Used(>75%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$datasource",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 13
+      },
+      "id": 55,
+      "interval": null,
+      "links": [
+        {
+          "type": "absolute",
+          "url": "./d/u3w3w2zWz/alertmanager?orgId=1&from=1556251197392&to=1556272797392&var-data&panelId=32&fullscreen&var-datasource=alertmanager"
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "alertname=Windows Nodes Net utilization Used",
+          "hide": false,
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "single"
+        }
+      ],
+      "thresholds": "1,10",
+      "title": "Windows Nodes Net utilization Used(>90%)",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 8,
+      "panels": [
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 18
+          },
+          "id": 28,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 4,
+            "desc": true
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=ExporterDown",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "ExporterDown",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 32
+          },
+          "id": 9,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=CpuLoad",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "CpuLoad",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 46
+          },
+          "id": 14,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Memory",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Memory",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 60
+          },
+          "id": 17,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Swap Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Swap Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 74
+          },
+          "id": 2,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Filesystem Space Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Filesystem Space Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 88
+          },
+          "id": 20,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Filesystem Inodes Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Filesystem Inodes Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 102
+          },
+          "id": 23,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Process Open Files Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Process Open Files Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 116
+          },
+          "id": 26,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=UnusualNetworkThroughputIn",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "UnusualNetworkThroughputIn",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 130
+          },
+          "id": 27,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=UnusualNetworkThroughputOut",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "UnusualNetworkThroughputOut",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        }
+      ],
+      "title": "node_exporter",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 25,
+      "panels": [
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 19
+          },
+          "id": 6,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Windows Nodes Disk Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Windows Nodes Disk Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 33
+          },
+          "id": 29,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Windows Nodes CPU Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Windows Nodes CPU Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 47
+          },
+          "id": 31,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Windows Nodes Memory Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Windows Nodes Memory Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 61
+          },
+          "id": 30,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Windows Nodes Virtual Memory Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Windows Nodes Virtual Memory Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "fontSize": "80%",
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 75
+          },
+          "id": 32,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [
+                "2",
+                "3"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "annotations": false,
+              "expr": "alertname=Windows Nodes Net utilization Used",
+              "hide": false,
+              "labelSelector": "*",
+              "legendFormat": "{{msg}}",
+              "refId": "A",
+              "target": "Query",
+              "type": "table"
+            }
+          ],
+          "title": "Windows Nodes Net utilization Used",
+          "transform": "table",
+          "transparent": false,
+          "type": "table"
+        }
+      ],
+      "title": "wmi_exporter",
+      "type": "row"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "alertmanager",
+          "value": "alertmanager"
+        },
+        "hide": 0,
+        "label": "Datasource",
+        "name": "datasource",
+        "options": [],
+        "query": "camptocamp-prometheus-alertmanager-datasource",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "2019-04-26T03:59:57.392Z",
+    "to": "2019-04-26T09:59:57.392Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "AlertManager",
+  "uid": "alertmanger",
+  "version": 20
+}

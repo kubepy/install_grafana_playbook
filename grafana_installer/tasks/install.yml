@@ -37,12 +37,13 @@
 
 - name: Unarchive {{ grafana_pluginname }} to remote {{ grafana_var_path }}/plugins
   unarchive:
-    src: "{{ grafana_pluginname }}"
+    src: "{{ item }}"
     dest: "{{ grafana_var_path }}/plugins"
     mode: u=rwx,g=rx,o=rx
     owner: grafana
     group: grafana
   notify: Restart grafana service
+  with_items: "{{ grafana_pluginname }}"
 
 - name: Collect facts about system services
   service_facts:
@@ -153,6 +154,12 @@
   with_items:
   - "node_exporter_dashboard.json"
   - "wmi_exporter_dashboard.json"
+  - "vmware_exporter_dashboard.json"
+  - "mssql_exporter_dashboard.json"
+  - "alertmanager_dashboard.json"
+  - "overview_dashboard.json"
+  - "summary_dashboard.json"
+  run_once: true
 
 - name: Clean node exporter dashboard
   grafana_dashboard:
@@ -196,6 +203,110 @@
   ignore_errors: true
   delegate_to: localhost
 
+- name: Clean vmware exporter dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_password }}"
+    uid: vmwareexporter
+    state: absent
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Import vmware  exporter dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_username }}"
+    overwrite: true
+    state: present
+    path: /tmp/vmware_exporter_dashboard.json
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Clean mssql exporter dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_password }}"
+    uid: mssqlexporter
+    state: absent
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Import mssql exporter dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_username }}"
+    overwrite: true
+    state: present
+    path: /tmp/mssql_exporter_dashboard.json
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Clean alertmanager dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_password }}"
+    uid: alertmanager
+    state: absent
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Import alertmanger dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_username }}"
+    overwrite: true
+    state: present
+    path: /tmp/alertmanager_dashboard.json
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Clean overview dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_password }}"
+    uid: overview
+    state: absent
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Import overview dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_username }}"
+    overwrite: true
+    state: present
+    path: /tmp/overview_dashboard.json
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Clean summary dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_password }}"
+    uid: summary
+    state: absent
+  ignore_errors: true
+  delegate_to: localhost
+
+- name: Import summary dashboard
+  grafana_dashboard:
+    grafana_url: "http://{{ ansible_default_ipv4['address'] }}:3000"
+    url_username: "{{ grafana_username }}"
+    url_password: "{{ grafana_username }}"
+    overwrite: true
+    state: present
+    path: /tmp/summary_dashboard.json
+  ignore_errors: true
+  delegate_to: localhost
 
 #- name: Create [grafana_datasource] vars datasource
 #  grafana_datasource:
