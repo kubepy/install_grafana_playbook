@@ -1,0 +1,27 @@
+---
+# tasks file for grafana_installer
+
+- name: Ensure grafana service is stopped and disabled
+  service:
+    name: grafana-server
+    state: stopped
+    enabled: no
+  ignore_errors: yes
+
+- name: Collect facts about system services
+  service_facts:
+
+- name: Ensure 3000 port of firewalld is closed
+  firewalld:
+    port: 3000/tcp
+    permanent: true
+    state: disabled
+    immediate: true
+  when: ansible_facts.services['firewalld.service'] is defined
+  ignore_errors: yes
+
+- name: Remove grafana-server RPM
+  yum:
+    name: grafana-server
+    state: removed
+
